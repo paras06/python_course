@@ -1,31 +1,21 @@
 """
 Write a Python program to find repeated items in a tuple.
-
 """
 
-
-def find_repeated_item(t):
-    list1 = []
-    result = []
-    for item in t:
-        if t.count(item) > 1:
-            list1.append(item)
-
-    for i in list1:
-        if i not in result:
-            result.append(i)
-
-    return result
+from typing import Tuple
 
 
-# def remove_duplicate_from_list(l):
-#     result = []
-#     for item in l:
-#         if item not in result:
-#             result.append(item)
+def findRepeatedElements(t: Tuple):
+    repeated_elements = []
+    for i in range(len(t)):
+        if t[i] in t[i + 1 :] and t[i] not in repeated_elements:
+            repeated_elements.append(t[i])
+    return repeated_elements
 
-#     return result
 
-
-my_tuple = (1, 2, 3, 2, 4, 5, 6, 3, 7, 8, 8, 9)
-print(f"Repeated items in the tuple are: {find_repeated_item(my_tuple)}")
+my_tuple = (1, 2, 3, 2, 4, 3, 5, 6, 4)
+repeated = findRepeatedElements(my_tuple)
+if len(repeated) > 0:
+    print(f"Repeated items = {repeated}")
+else:
+    print("No repeated elements found.")
